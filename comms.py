@@ -3,15 +3,10 @@ import requests, time
 class Comms:
   def __init__(self, ip):
     self.url = "http://" + ip + "/out.txt"
-    self.lastMessage = ""
-    self.get()
     
   def get(self):  
     current = requests.get(self.url).text
-    if(current != self.lastMessage):
-      self.lastMessage = current
-      return current
-    return ""
+    return current
 
   def send(self, message):
     with open("/var/www/html/out.txt", "w") as f:
